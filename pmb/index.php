@@ -1,7 +1,10 @@
+<?php
+session_start(); // mulai session
+?>
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Login pmb</title>
+  	<title>Login PMB</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,13 +21,19 @@
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
 					<h2 class="heading-section">Login</h2>
+					<?php
+
+                    if (isset($_SESSION['gagal'])) {
+                        echo $_SESSION['gagal'];
+                    }
+                    ?>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">Have an account?</h3>
-		      	<form method="POST" action="index.php" class="signin-form">
+		      	<form method="POST" action="login.php" class="signin-form">
 		      		<div class="form-group">
 		      			<input type="text" name="username" class="form-control" placeholder="Username" required>
 		      		</div>
@@ -33,60 +42,29 @@
 	              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
-	            	<button name="login" type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+	            	<input type="submit" name="login" class="form-control btn btn-primary submit px-3">Sign In</input>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
-		            	<label class="checkbox-wrap checkbox-primary">Remember Me
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="#" style="color: #fff">Forgot Password</a>
-								</div>
+						<label class="checkbox-wrap checkbox-primary">Remember Me
+							<input type="checkbox" checked>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class="w-50 text-md-right">
+						<a href="#" style="color: #fff">Forgot Password</a>
+					</div>
 	            </div>
-	          </form >
+	          </form>
 		      </div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-    <script src="dist_login/js/jquery.min.js"></script>
+	<script src="dist_login/js/jquery.min.js"></script>
   <script src="dist_login/js/popper.js"></script>
   <script src="dist_login/js/bootstrap.min.js"></script>
   <script src="dist_login/js/main.js"></script>
-
 	</body>
 </html>
-
-
-<?php
-session_start(); //mulai session
-
-// cek terlebih dahulu apakah user sudah submit form login atau belum
-// gunakan method isset
-if (isset($_POST['login'])){
-    // ambil data yang di inputkan user berdasarkan uniq name
-    $username  = $_POST['username'];
-    $password  = $_POST['password'];
-    
-    // validasi username dan password nya disini
-if ($username == "Sina" && $password == "12345"){
-    
-// jika username dan password sama, arahkan ke file home.php
-    $_SESSION['username'] = $username;
-    header("Location: home.php");
-    exit();
-}else{
-    // jika username dan password beda, tampilkan pesan error username salah
-// dan tetap di halaman index/login.php
-
-    header("Location: index.php");
-    exit();
-}
-
-}
-
-?>
