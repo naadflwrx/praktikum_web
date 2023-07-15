@@ -5,7 +5,7 @@
 
 <form method="POST" action="{{ url('admin/produk/store') }}">
   {{ csrf_field() }}
-  <h4 style="text-align:center">Form Create Data</h4>
+  <h4 style="text-align:center">Form Create Produk</h4>
   <div class="form-group row">
     <label for="kode" class="col-4 col-form-label">Kode</label> 
     <div class="col-8">

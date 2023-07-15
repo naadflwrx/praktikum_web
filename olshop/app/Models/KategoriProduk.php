@@ -9,18 +9,20 @@ use Illuminate\Support\Facades\DB;
 class KategoriProduk extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
     protected $table = 'kategori_produk';
 
-    protected $primarykey = 'id';
+    protected $primary = 'id';
 
     protected $fillable = [
-        'nama',
+        'nama'
     ];
 
     public function produk(){
         return $this->hasMany(Produk::class);
     }
-
 
     public function getAllData(){
         $alldata = DB::table('kategori_produk')
